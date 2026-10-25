@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>량원펑 신격화 게이지 — 병맛 소형판</title>
+<meta name="description" content="량붕이부터 킹갓평까지, 31단계로 보는 량원펑 신격화 게이지">
+<style>
+:root{font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{display:flex;align-items:flex-start;justify-content:center;background:transparent}
+.widget{
+  --ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;
+  display:grid;grid-template-rows:20px minmax(0,1fr) 38px;gap:4px;
+  width:100%;height:100%;max-width:360px;max-height:246px;min-width:0;min-height:0;
+  padding:7px 9px 8px;border:1px solid var(--edge);border-radius:10px;
+  color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden
+}
+.widget[data-stage="0"]{--accent:#bd3858;--paper:#fff0f2;--edge:#e5adb9}
+.widget[data-stage="1"]{--accent:#ae563e;--paper:#fff2eb;--edge:#e4b5a3}
+.widget[data-stage="2"]{--accent:#6c7777;--paper:#f3f5f2;--edge:#b8c4bf}
+.widget[data-stage="3"]{--accent:#237d73;--paper:#eaf9f3;--edge:#92c6b9}
+.widget[data-stage="4"]{--accent:#8453bb;--paper:#f3edff;--edge:#c5a9e9}
+.widget[data-stage="5"]{
+  --ink:#fff4db;--muted:#dccca5;--accent:#ffcd61;--edge:#846239;--paper:#2a231c;
+  background:radial-gradient(ellipse at 32% 30%,#59412a,#231f1b 88%)
+}
+.head{display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0}
+.title{font-size:13px;font-weight:950;line-height:1.1;white-space:nowrap;letter-spacing:-.6px}
+.count{flex:none;font:800 10px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--accent);border:1px solid var(--edge);border-radius:5px;padding:2px 5px;white-space:nowrap}
+.center{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);align-items:center;gap:7px;min-height:0;min-width:0}
+.portrait{position:relative;width:auto;max-width:100%;height:100%;aspect-ratio:1;justify-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:6px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 2px 8px rgba(0,0,0,.13)}
+.fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 60px/1 Georgia,serif;color:#828c84}
+.portrait img,.portrait video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.portrait img{opacity:1}
+.portrait img.failed{opacity:0}
+.portrait video{opacity:0;pointer-events:none}
+.portrait video.active{opacity:1}
+.readout{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:0;min-width:0;overflow:hidden}
+.lead{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--muted);font-weight:800;line-height:1}
+.emoji{font-size:14px;line-height:1}
+.stage{font-size:clamp(21px,8.2vw,31px);line-height:1.14;letter-spacing:-1.2px;font-weight:950;white-space:nowrap}
+.one-liner{min-height:1.2em;max-height:6em;overflow:visible;font-size:10px;line-height:1.23;letter-spacing:-.3px;font-weight:650;white-space:pre-line;overflow-wrap:anywhere}
+.score{display:inline-block;align-self:flex-start;padding:2px 5px;border:1px solid var(--edge);border-radius:4px;background:rgba(255,255,255,.1);font:750 9px/1.2 "Apple SD Gothic Neo",sans-serif;color:var(--accent);white-space:nowrap}
+.controls{border-top:1px solid var(--edge);padding-top:3px;display:grid;grid-template-rows:12px minmax(0,1fr);gap:0;min-width:0}
+.ends{display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:850;color:var(--muted);line-height:1}
+.range{appearance:none;display:block;width:100%;height:21px;margin:0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
+.range::-webkit-slider-runnable-track{height:5px;border-radius:10px;background:linear-gradient(90deg,#d24e6c 0%,#a6ada9 50%,#f2b844 100%);border:1px solid rgba(0,0,0,.08)}
+.range::-webkit-slider-thumb{appearance:none;width:18px;height:18px;margin-top:-7px;background:var(--paper);border:3px solid var(--accent);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.range::-moz-range-track{height:5px;border-radius:10px;background:linear-gradient(90deg,#d24e6c,#a6ada9,#f2b844)}
+.range::-moz-range-thumb{width:13px;height:13px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
+.range:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+@media(max-width:260px),(max-height:174px){
+  .widget{grid-template-rows:17px minmax(0,1fr) 34px;gap:3px;padding:5px 7px 6px;border-radius:7px}
+  .title{font-size:11px}.count{font-size:9px}
+  .center{gap:5px;grid-template-columns:minmax(0,30%) minmax(0,1fr)}.stage{font-size:clamp(18px,8.5vw,23px)}
+  .one-liner{font-size:9px}.score{font-size:8px}.lead{font-size:8px}
+  .emoji{font-size:12px}.controls{grid-template-rows:11px minmax(0,1fr)}
+  .ends{font-size:8px}.range{height:20px}
+}
+</style>
+</head>
+<body>
+<main class="widget" id="widget" data-stage="2" aria-label="량원펑 신격화 게이지">
+  <header class="head">
+    <strong class="title">량원펑 신격화 게이지</strong>
+    <span class="count" id="count">16 / 31</span>
+  </header>
+  <section class="center" aria-label="현재 량원펑 등급">
+    <div class="portrait">
+      <span class="fallback" aria-hidden="true">梁</span>
+      <img id="portrait" src="https://lichtspektrum.github.io/liang-intensity-calibrator/frames/frame-15.webp" alt="량원펑 단계별 밈 초상" decoding="async">
+      <video id="video" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
+    </div>
+    <div class="readout">
+      <div class="lead"><span>현재 판정</span><span class="emoji" id="emoji">🤔</span></div>
+      <strong class="stage" id="stage" aria-live="polite">량원펑</strong>
+      <span class="one-liner" id="line">일단 중립기어 박아봄</span>
+      <span class="score" id="score">0점</span>
+    </div>
+  </section>
+  <footer class="controls">
+    <div class="ends"><span>😵 대참사</span><span>👑 신격화</span></div>
+    <input class="range" id="strength" type="range" min="-15" max="15" step="1" value="0"
+      aria-label="량원펑 신격화 정도, 왼쪽은 대참사 오른쪽은 신격화">
+  </footer>
+</main>
+<script>
+(() => {
+  "use strict";
+  // Reimplemented from MIT-licensed Lichtspektrum/liang-intensity-calibrator.
+  // Original portrait/video media are separately licensed and are NOT bundled.
+  const ROOT = "https://lichtspektrum.github.io/liang-intensity-calibrator/";
+  const TIERS = [
+    {name:"량붕이",emoji:"😭",line:"대체 신모델 언제나옴?"},
+    {name:"량통수",emoji:"😤",line:"이걸 신모델이라고 내놓음?"},
+    {name:"량원펑",emoji:"🤔",line:"일단 중립기어 박아봄"},
+    {name:"대원평",emoji:"🙇",line:"명불허전이죠? 대가리 다 봉합됐죠?"},
+    {name:"갓원평",emoji:"🔥",line:"그저 GOAT"},
+    {name:"킹갓평",emoji:"👑",line:"예수, 왜 회의를 시작하지 않는거지?\n\n아직 량원펑이 오지 않았다네."}
+  ];
+  const $ = id => document.getElementById(id);
+  const widget=$("widget"), input=$("strength"), stage=$("stage"), line=$("line");
+  const emoji=$("emoji"), score=$("score"), count=$("count"), image=$("portrait"), video=$("video");
+  const clamp=n => Math.min(15, Math.max(-15, Math.round(n)));
+  const params = new URLSearchParams(location.search);
+  const parsed = Number(params.get("score"));
+  let current = params.has("score") && Number.isFinite(parsed) ? clamp(parsed) : 0;
+  let lastFrame = -1;
+  let videoReady = false, seeking = false, targetTime = null, scheduled = 0;
+
+  function frameUrl(frame){
+    return ROOT + "frames/frame-" + String(frame).padStart(2,"0") + ".webp";
+  }
+  function update(value){
+    current = clamp(value);
+    const frame = current + 15;
+    const tierIndex = Math.min(5, Math.floor(frame/6));
+    const tier = TIERS[tierIndex];
+    widget.dataset.stage = String(tierIndex);
+    input.value = String(current);
+    stage.textContent = tier.name;
+    line.textContent = tier.line;
+    emoji.textContent = tier.emoji;
+    score.textContent = (current > 0 ? "+" : "") + current + "점";
+    count.textContent = (frame + 1) + " / 31";
+    input.setAttribute("aria-valuetext", tier.name + ", " + current + "점. " + tier.line);
+    if(frame !== lastFrame){
+      lastFrame = frame;
+      image.classList.remove("failed");
+      image.src = frameUrl(frame);
+      image.alt = tier.name + ", " + (frame+1) + "번째 초상";
+    }
+    if(videoReady){
+      targetTime = (frame / 30) * Math.max(0, video.duration - 1/30);
+      video.classList.remove("active");
+      if(!scheduled) scheduled = requestAnimationFrame(seekToLatest);
+    }
+  }
+  function seekToLatest(){
+    scheduled = 0;
+    if(!videoReady || seeking || targetTime === null) return;
+    if(Math.abs(video.currentTime - targetTime) < .001){
+      if(video.readyState >= 2) video.classList.add("active");
+      targetTime = null; return;
+    }
+    seeking = true;
+    try {video.currentTime = targetTime;} catch(e){seeking=false;targetTime=null;}
+  }
+  image.addEventListener("error", () => image.classList.add("failed"));
+  video.addEventListener("loadedmetadata", () => {
+    if(!(video.duration>0)) return;
+    videoReady=true;
+    targetTime=((current+15)/30)*Math.max(0,video.duration-1/30);
+    if(!scheduled) scheduled=requestAnimationFrame(seekToLatest);
+  });
+  video.addEventListener("seeked", () => {
+    seeking=false;
+    if(targetTime === null) return;
+    if(Math.abs(video.currentTime - targetTime)<.06){
+      video.classList.add("active"); targetTime=null;
+    }else if(!scheduled) scheduled=requestAnimationFrame(seekToLatest);
+  });
+  video.addEventListener("error",()=>{videoReady=false;video.classList.remove("active")});
+  input.addEventListener("input",()=>update(Number(input.value)));
+  update(current);
+
+  // Default: lightweight 31 still frames. Add ?smooth=1 for original continuous video.
+  if(params.get("smooth")==="1"){
+    const webm=document.createElement("source");
+    webm.src=ROOT+"video/liang-evolution.webm";
+    webm.type='video/webm; codecs="vp9"';
+    const mp4=document.createElement("source");
+    mp4.src=ROOT+"video/liang-evolution.mp4";
+    mp4.type='video/mp4; codecs="avc1.64001f"';
+    video.append(webm,mp4);
+    video.load();
+  }
+})();
+</script>
+</body>
+</html>
