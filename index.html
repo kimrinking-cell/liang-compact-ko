@@ -7,73 +7,41 @@
 <title>량원펑 신격화 게이지 — 병맛 소형판</title>
 <meta name="description" content="량붕이부터 킹갓평까지, 31단계로 보는 량원펑 신격화 게이지">
 <style>
-:root{font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;color-scheme:light}
+:root{font-family:system-ui,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;min-height:0;overflow-x:hidden}
-body{display:flex;align-items:flex-start;justify-content:center;background:transparent}
-.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:24px minmax(0,1fr) 50px;gap:3px;width:100%;height:440px;max-width:440px;min-width:0;min-height:0;padding:5px 8px;border:1px solid var(--edge);border-radius:12px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
+html,body{margin:0;width:100%;overflow:hidden}
+body{display:flex;justify-content:center;background:transparent}
+.widget{--accent:#ffcd61;--paper:#2a231c;--edge:#846239;width:100%;max-width:440px;height:440px;padding:6px;display:grid;grid-template-rows:minmax(0,1fr) 42px;gap:6px;overflow:hidden;border:1px solid var(--edge);border-radius:12px;background:#231f1b}
 .widget[data-stage="0"]{--accent:#bd3858;--paper:#fff0f2;--edge:#e5adb9}
 .widget[data-stage="1"]{--accent:#ae563e;--paper:#fff2eb;--edge:#e4b5a3}
 .widget[data-stage="2"]{--accent:#6c7777;--paper:#f3f5f2;--edge:#b8c4bf}
 .widget[data-stage="3"]{--accent:#237d73;--paper:#eaf9f3;--edge:#92c6b9}
 .widget[data-stage="4"]{--accent:#8453bb;--paper:#f3edff;--edge:#c5a9e9}
-.widget[data-stage="5"]{--ink:#fff4db;--muted:#dccca5;--accent:#ffcd61;--edge:#846239;--paper:#2a231c;background:radial-gradient(ellipse at 32% 30%,#59412a,#231f1b 88%)}
-.head{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
-.title{font-size:15px;font-weight:950;line-height:1.1;white-space:nowrap;letter-spacing:-.6px}
-.count{flex:none;font:800 11px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--accent);border:1px solid var(--edge);border-radius:5px;padding:3px 6px;white-space:nowrap}
-.center{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:0;min-width:0;min-height:0;overflow:hidden}
-.portrait{position:relative;width:min(100%,285px);height:285px;max-width:285px;flex:none;aspect-ratio:1;justify-self:center;align-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:10px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 3px 12px rgba(0,0,0,.18)}
-.fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 70px/1 Georgia,serif;color:#828c84}
+.center{display:flex;min-width:0;min-height:0;overflow:hidden}
+.portrait{position:relative;width:100%;height:100%;overflow:hidden;border-radius:8px;background:#333}
+.fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 70px Georgia,serif;color:#828c84}
 .portrait img,.portrait video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
-.portrait img{opacity:1}.portrait img.failed{opacity:0}
+.portrait img.failed{opacity:0}
 .portrait video{opacity:0;pointer-events:none}.portrait video.active{opacity:1}
-.readout{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;width:100%;min-width:0;text-align:center;height:78px;min-height:78px;max-height:78px;overflow:hidden;padding-top:3px}
-.lead{display:none}.emoji{font-size:14px}
-.stage{height:38px;flex:none;display:flex;align-items:center;justify-content:center;font-size:clamp(27px,7.5vw,34px);line-height:1.1;letter-spacing:-1px;font-weight:950;white-space:nowrap}
-.one-liner{font-size:clamp(14px,3.3vw,16px);line-height:1.22;letter-spacing:-.35px;font-weight:650;white-space:pre-line;overflow-wrap:anywhere;max-width:100%;min-height:37px}
-.score{display:none}
-.controls{border-top:1px solid var(--edge);padding-top:3px;display:grid;grid-template-rows:13px minmax(0,1fr);min-width:0}
-.ends{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:850;color:var(--muted);line-height:1}
-.range{appearance:none;display:block;width:100%;height:32px;margin:0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
-.range::-webkit-slider-runnable-track{height:14px;border-radius:10px;background:linear-gradient(90deg,#d24e6c 0%,#a6ada9 50%,#f2b844 100%);border:1px solid rgba(0,0,0,.08)}
+.controls{display:flex;align-items:center;min-width:0}
+.range{appearance:none;display:block;width:100%;height:34px;margin:0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
+.range::-webkit-slider-runnable-track{height:14px;border-radius:10px;background:linear-gradient(90deg,#d24e6c,#a6ada9,#f2b844)}
 .range::-webkit-slider-thumb{appearance:none;width:30px;height:30px;margin-top:-8px;background:var(--paper);border:3px solid var(--accent);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25)}
 .range::-moz-range-track{height:14px;border-radius:10px;background:linear-gradient(90deg,#d24e6c,#a6ada9,#f2b844)}
 .range::-moz-range-thumb{width:26px;height:26px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
 .range:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-@media(max-height:300px){
-.widget{height:100%;grid-template-rows:20px minmax(0,1fr) 43px;gap:2px;padding:6px 8px}
-.title{font-size:12px}.count{font-size:9px;padding:2px 5px}
-.center{gap:0}.portrait{width:min(100%,180px);height:180px;max-width:180px;max-height:none}
-.readout{gap:1px;height:62px;min-height:62px;max-height:62px;padding-top:1px}.stage{height:25px}.stage{height:38px;flex:none;display:flex;align-items:center;justify-content:center;font-size:21px}.one-liner{font-size:9px;line-height:1.2}
-.controls{padding-top:3px;grid-template-rows:12px minmax(0,1fr)}.ends{font-size:9px}
-.range{height:24px}.range::-webkit-slider-runnable-track{height:8px}.range::-webkit-slider-thumb{width:22px;height:22px;margin-top:-8px}
-}
-@media(max-width:320px) and (min-height:301px){.widget{padding:8px 9px}.title{font-size:13px}.portrait{max-height:none}.one-liner{font-size:12px}}
 </style>
 </head>
 <body>
 <main class="widget" id="widget" data-stage="5" aria-label="량원펑 신격화 게이지">
-  <header class="head">
-    <strong class="title">량원펑 신격화 게이지</strong>
-    <span class="count" id="count">31 / 31</span>
-  </header>
   <section class="center" aria-label="현재 량원펑 등급">
     <div class="portrait">
       <span class="fallback" aria-hidden="true">梁</span>
       <img id="portrait" src="https://lichtspektrum.github.io/liang-intensity-calibrator/frames/frame-30.webp" alt="량원펑 단계별 밈 초상" decoding="async">
       <video id="video" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
     </div>
-    <div class="readout">
-      <div class="lead"><span>현재 판정</span><span class="emoji" id="emoji">👑</span></div>
-      <strong class="stage" id="stage" aria-live="polite">킹갓평</strong>
-      <span class="one-liner" id="line">예수, 왜 회의를 시작하지 않는거지?
-
-아직 량원펑이 오지 않았다네.</span>
-      <span class="score" id="score">+15점</span>
-    </div>
   </section>
   <footer class="controls">
-    <div class="ends"><span>😵 대참사</span><span>👑 신격화</span></div>
     <input class="range" id="strength" type="range" min="-15" max="15" step="1" value="15"
       aria-label="량원펑 신격화 정도, 왼쪽은 대참사 오른쪽은 신격화">
   </footer>
@@ -93,8 +61,8 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
     {name:"킹갓평",emoji:"👑",line:"예수, 왜 회의를 시작하지 않는거지?\n\n아직 량원펑이 오지 않았다네."}
   ];
   const $ = id => document.getElementById(id);
-  const widget=$("widget"), input=$("strength"), stage=$("stage"), line=$("line");
-  const emoji=$("emoji"), score=$("score"), count=$("count"), image=$("portrait"), video=$("video");
+  const widget=$("widget"), input=$("strength");
+  const image=$("portrait"), video=$("video");
   const clamp=n => Math.min(15, Math.max(-15, Math.round(n)));
   const params = new URLSearchParams(location.search);
   const parsed = Number(params.get("score"));
@@ -112,11 +80,6 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
     const tier = TIERS[tierIndex];
     widget.dataset.stage = String(tierIndex);
     input.value = String(current);
-    stage.textContent = tier.name;
-    line.textContent = tier.line;
-    emoji.textContent = tier.emoji;
-    score.textContent = (current > 0 ? "+" : "") + current + "점";
-    count.textContent = (frame + 1) + " / 31";
     input.setAttribute("aria-valuetext", tier.name + ", " + current + "점. " + tier.line);
     if(frame !== lastFrame){
       lastFrame = frame;
