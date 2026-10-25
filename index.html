@@ -9,9 +9,9 @@
 <style>
 :root{font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;color-scheme:light}
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;overflow:hidden}
+html,body{margin:0;width:100%;min-height:0;overflow-x:hidden}
 body{display:flex;align-items:flex-start;justify-content:center;background:transparent}
-.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:26px minmax(0,1fr) 54px;gap:6px;width:100%;height:100%;max-width:440px;min-width:0;min-height:0;padding:10px 12px;border:1px solid var(--edge);border-radius:12px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
+.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:26px auto 54px;gap:8px;width:100%;height:auto;max-width:440px;min-width:0;min-height:0;padding:10px 12px;border:1px solid var(--edge);border-radius:12px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
 .widget[data-stage="0"]{--accent:#bd3858;--paper:#fff0f2;--edge:#e5adb9}
 .widget[data-stage="1"]{--accent:#ae563e;--paper:#fff2eb;--edge:#e4b5a3}
 .widget[data-stage="2"]{--accent:#6c7777;--paper:#f3f5f2;--edge:#b8c4bf}
@@ -21,8 +21,8 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
 .head{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
 .title{font-size:15px;font-weight:950;line-height:1.1;white-space:nowrap;letter-spacing:-.6px}
 .count{flex:none;font:800 11px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--accent);border:1px solid var(--edge);border-radius:5px;padding:3px 6px;white-space:nowrap}
-.center{display:grid;grid-template-rows:minmax(0,1fr) auto;justify-items:center;align-items:center;gap:8px;min-width:0;min-height:0}
-.portrait{position:relative;width:min(210px,calc(100vh - 205px));height:min(210px,calc(100vh - 205px));max-width:100%;aspect-ratio:1;justify-self:center;align-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:10px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 3px 12px rgba(0,0,0,.18)}
+.center{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:10px;min-width:0;min-height:0}
+.portrait{position:relative;width:min(100%,260px);height:auto;max-width:260px;aspect-ratio:1;justify-self:center;align-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:10px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 3px 12px rgba(0,0,0,.18)}
 .fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 70px/1 Georgia,serif;color:#828c84}
 .portrait img,.portrait video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .portrait img{opacity:1}.portrait img.failed{opacity:0}
@@ -41,14 +41,14 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
 .range::-moz-range-thumb{width:21px;height:21px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
 .range:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 @media(max-height:300px){
-.widget{grid-template-rows:20px minmax(0,1fr) 43px;gap:2px;padding:6px 8px}
+.widget{grid-template-rows:20px auto 43px;gap:2px;padding:6px 8px}
 .title{font-size:12px}.count{font-size:9px;padding:2px 5px}
-.center{gap:3px}.portrait{width:min(100%,96px);max-height:96px}
+.center{gap:3px}.portrait{width:min(100%,200px);max-width:200px;max-height:none}
 .readout{gap:1px}.stage{font-size:21px}.one-liner{font-size:9px;line-height:1.2}
 .controls{padding-top:3px;grid-template-rows:12px minmax(0,1fr)}.ends{font-size:9px}
 .range{height:24px}.range::-webkit-slider-runnable-track{height:8px}.range::-webkit-slider-thumb{width:22px;height:22px;margin-top:-8px}
 }
-@media(max-width:320px) and (min-height:301px){.widget{padding:8px 9px}.title{font-size:13px}.portrait{max-height:185px}.one-liner{font-size:12px}}
+@media(max-width:320px) and (min-height:301px){.widget{padding:8px 9px}.title{font-size:13px}.portrait{max-height:none}.one-liner{font-size:12px}}
 </style>
 </head>
 <body>
