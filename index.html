@@ -11,79 +11,70 @@
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;height:100%;overflow:hidden}
 body{display:flex;align-items:flex-start;justify-content:center;background:transparent}
-.widget{
-  --ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;
-  display:grid;grid-template-rows:20px minmax(0,1fr) 38px;gap:4px;
-  width:100%;height:100%;max-width:360px;max-height:246px;min-width:0;min-height:0;
-  padding:7px 9px 8px;border:1px solid var(--edge);border-radius:10px;
-  color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden
-}
+.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:22px minmax(0,1fr) 45px;gap:4px;width:100%;height:100%;max-width:420px;min-width:0;min-height:0;padding:8px 10px;border:1px solid var(--edge);border-radius:10px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
 .widget[data-stage="0"]{--accent:#bd3858;--paper:#fff0f2;--edge:#e5adb9}
 .widget[data-stage="1"]{--accent:#ae563e;--paper:#fff2eb;--edge:#e4b5a3}
 .widget[data-stage="2"]{--accent:#6c7777;--paper:#f3f5f2;--edge:#b8c4bf}
 .widget[data-stage="3"]{--accent:#237d73;--paper:#eaf9f3;--edge:#92c6b9}
 .widget[data-stage="4"]{--accent:#8453bb;--paper:#f3edff;--edge:#c5a9e9}
-.widget[data-stage="5"]{
-  --ink:#fff4db;--muted:#dccca5;--accent:#ffcd61;--edge:#846239;--paper:#2a231c;
-  background:radial-gradient(ellipse at 32% 30%,#59412a,#231f1b 88%)
-}
+.widget[data-stage="5"]{--ink:#fff4db;--muted:#dccca5;--accent:#ffcd61;--edge:#846239;--paper:#2a231c;background:radial-gradient(ellipse at 32% 30%,#59412a,#231f1b 88%)}
 .head{display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0}
 .title{font-size:13px;font-weight:950;line-height:1.1;white-space:nowrap;letter-spacing:-.6px}
 .count{flex:none;font:800 10px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--accent);border:1px solid var(--edge);border-radius:5px;padding:2px 5px;white-space:nowrap}
-.center{display:grid;grid-template-columns:minmax(0,34%) minmax(0,1fr);align-items:center;gap:7px;min-height:0;min-width:0}
-.portrait{position:relative;width:auto;max-width:100%;height:100%;aspect-ratio:1;justify-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:6px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 2px 8px rgba(0,0,0,.13)}
+.center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:0;min-width:0}
+.portrait{position:relative;flex:none;width:96px;height:96px;max-width:100%;aspect-ratio:1;object-fit:cover;overflow:hidden;border:1px solid var(--edge);border-radius:8px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 2px 8px rgba(0,0,0,.13)}
 .fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 60px/1 Georgia,serif;color:#828c84}
 .portrait img,.portrait video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
-.portrait img{opacity:1}
-.portrait img.failed{opacity:0}
-.portrait video{opacity:0;pointer-events:none}
-.portrait video.active{opacity:1}
-.readout{display:flex;flex-direction:column;justify-content:center;gap:3px;min-height:0;min-width:0;overflow:hidden}
-.lead{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--muted);font-weight:800;line-height:1}
-.emoji{font-size:14px;line-height:1}
-.stage{font-size:clamp(21px,8.2vw,31px);line-height:1.14;letter-spacing:-1.2px;font-weight:950;white-space:nowrap}
-.one-liner{min-height:1.2em;max-height:6em;overflow:visible;font-size:10px;line-height:1.23;letter-spacing:-.3px;font-weight:650;white-space:pre-line;overflow-wrap:anywhere}
-.score{display:inline-block;align-self:flex-start;padding:2px 5px;border:1px solid var(--edge);border-radius:4px;background:rgba(255,255,255,.1);font:750 9px/1.2 "Apple SD Gothic Neo",sans-serif;color:var(--accent);white-space:nowrap}
-.controls{border-top:1px solid var(--edge);padding-top:3px;display:grid;grid-template-rows:12px minmax(0,1fr);gap:0;min-width:0}
-.ends{display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:850;color:var(--muted);line-height:1}
-.range{appearance:none;display:block;width:100%;height:21px;margin:0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
-.range::-webkit-slider-runnable-track{height:5px;border-radius:10px;background:linear-gradient(90deg,#d24e6c 0%,#a6ada9 50%,#f2b844 100%);border:1px solid rgba(0,0,0,.08)}
-.range::-webkit-slider-thumb{appearance:none;width:18px;height:18px;margin-top:-7px;background:var(--paper);border:3px solid var(--accent);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25)}
-.range::-moz-range-track{height:5px;border-radius:10px;background:linear-gradient(90deg,#d24e6c,#a6ada9,#f2b844)}
-.range::-moz-range-thumb{width:13px;height:13px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
+.portrait img{opacity:1}.portrait img.failed{opacity:0}
+.portrait video{opacity:0;pointer-events:none}.portrait video.active{opacity:1}
+.readout{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:0;min-width:0;width:100%;text-align:center;overflow:hidden}
+.lead{display:none}
+.emoji{font-size:13px;line-height:1}
+.stage{font-size:clamp(19px,6.4vw,26px);line-height:1.05;letter-spacing:-1px;font-weight:950;white-space:nowrap}
+.one-liner{font-size:10px;line-height:1.22;letter-spacing:-.3px;font-weight:650;white-space:pre-line;overflow-wrap:anywhere;max-width:100%;max-height:4.9em;overflow:hidden}
+.score{display:none;padding:1px 5px;border:1px solid var(--edge);border-radius:4px;background:rgba(255,255,255,.1);font:750 9px/1.1 "Apple SD Gothic Neo",sans-serif;color:var(--accent);white-space:nowrap}
+.controls{border-top:1px solid var(--edge);padding-top:3px;display:grid;grid-template-rows:13px minmax(0,1fr);gap:0;min-width:0}
+.ends{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:850;color:var(--muted);line-height:1}
+.range{appearance:none;display:block;width:100%;height:28px;margin:0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
+.range::-webkit-slider-runnable-track{height:8px;border-radius:10px;background:linear-gradient(90deg,#d24e6c 0%,#a6ada9 50%,#f2b844 100%);border:1px solid rgba(0,0,0,.08)}
+.range::-webkit-slider-thumb{appearance:none;width:22px;height:22px;margin-top:-8px;background:var(--paper);border:3px solid var(--accent);border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.range::-moz-range-track{height:8px;border-radius:10px;background:linear-gradient(90deg,#d24e6c,#a6ada9,#f2b844)}
+.range::-moz-range-thumb{width:22px;height:22px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
 .range:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-@media(max-width:260px),(max-height:174px){
-  .widget{grid-template-rows:17px minmax(0,1fr) 34px;gap:3px;padding:5px 7px 6px;border-radius:7px}
-  .title{font-size:11px}.count{font-size:9px}
-  .center{gap:5px;grid-template-columns:minmax(0,30%) minmax(0,1fr)}.stage{font-size:clamp(18px,8.5vw,23px)}
-  .one-liner{font-size:9px}.score{font-size:8px}.lead{font-size:8px}
-  .emoji{font-size:12px}.controls{grid-template-rows:11px minmax(0,1fr)}
-  .ends{font-size:8px}.range{height:20px}
+@media(max-width:290px),(max-height:225px){
+.widget{grid-template-rows:19px minmax(0,1fr) 42px;gap:2px;padding:6px 8px}
+.title{font-size:12px}.count{font-size:9px}
+.center{gap:2px}.portrait{width:76px;height:76px}
+.stage{font-size:21px}.lead{font-size:8px}.emoji{font-size:12px}
+.one-liner{font-size:9px;line-height:1.2}.score{font-size:8px}
+.ends{font-size:9px}
 }
 </style>
 </head>
 <body>
-<main class="widget" id="widget" data-stage="2" aria-label="량원펑 신격화 게이지">
+<main class="widget" id="widget" data-stage="5" aria-label="량원펑 신격화 게이지">
   <header class="head">
     <strong class="title">량원펑 신격화 게이지</strong>
-    <span class="count" id="count">16 / 31</span>
+    <span class="count" id="count">31 / 31</span>
   </header>
   <section class="center" aria-label="현재 량원펑 등급">
     <div class="portrait">
       <span class="fallback" aria-hidden="true">梁</span>
-      <img id="portrait" src="https://lichtspektrum.github.io/liang-intensity-calibrator/frames/frame-15.webp" alt="량원펑 단계별 밈 초상" decoding="async">
+      <img id="portrait" src="https://lichtspektrum.github.io/liang-intensity-calibrator/frames/frame-30.webp" alt="량원펑 단계별 밈 초상" decoding="async">
       <video id="video" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
     </div>
     <div class="readout">
-      <div class="lead"><span>현재 판정</span><span class="emoji" id="emoji">🤔</span></div>
-      <strong class="stage" id="stage" aria-live="polite">량원펑</strong>
-      <span class="one-liner" id="line">일단 중립기어 박아봄</span>
-      <span class="score" id="score">0점</span>
+      <div class="lead"><span>현재 판정</span><span class="emoji" id="emoji">👑</span></div>
+      <strong class="stage" id="stage" aria-live="polite">킹갓평</strong>
+      <span class="one-liner" id="line">예수, 왜 회의를 시작하지 않는거지?
+
+아직 량원펑이 오지 않았다네.</span>
+      <span class="score" id="score">+15점</span>
     </div>
   </section>
   <footer class="controls">
     <div class="ends"><span>😵 대참사</span><span>👑 신격화</span></div>
-    <input class="range" id="strength" type="range" min="-15" max="15" step="1" value="0"
+    <input class="range" id="strength" type="range" min="-15" max="15" step="1" value="15"
       aria-label="량원펑 신격화 정도, 왼쪽은 대참사 오른쪽은 신격화">
   </footer>
 </main>
@@ -107,7 +98,7 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
   const clamp=n => Math.min(15, Math.max(-15, Math.round(n)));
   const params = new URLSearchParams(location.search);
   const parsed = Number(params.get("score"));
-  let current = params.has("score") && Number.isFinite(parsed) ? clamp(parsed) : 0;
+  let current = params.has("score") && Number.isFinite(parsed) ? clamp(parsed) : 15;
   let lastFrame = -1;
   let videoReady = false, seeking = false, targetTime = null, scheduled = 0;
 
