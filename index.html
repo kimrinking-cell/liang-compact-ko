@@ -11,7 +11,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;min-height:0;overflow-x:hidden}
 body{display:flex;align-items:flex-start;justify-content:center;background:transparent}
-.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:24px auto 50px;gap:4px;width:100%;height:auto;max-width:440px;min-width:0;min-height:0;padding:7px 10px;border:1px solid var(--edge);border-radius:12px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
+.widget{--ink:#2f3030;--muted:#727570;--edge:#bdc5be;--accent:#747c79;--paper:#f2f4ef;display:grid;grid-template-rows:24px minmax(0,1fr) 50px;gap:4px;width:100%;height:440px;max-width:440px;min-width:0;min-height:0;padding:7px 10px;border:1px solid var(--edge);border-radius:12px;color:var(--ink);background:radial-gradient(ellipse at 30% 35%,#fff 1%,var(--paper) 88%);overflow:hidden}
 .widget[data-stage="0"]{--accent:#bd3858;--paper:#fff0f2;--edge:#e5adb9}
 .widget[data-stage="1"]{--accent:#ae563e;--paper:#fff2eb;--edge:#e4b5a3}
 .widget[data-stage="2"]{--accent:#6c7777;--paper:#f3f5f2;--edge:#b8c4bf}
@@ -21,13 +21,13 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
 .head{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
 .title{font-size:15px;font-weight:950;line-height:1.1;white-space:nowrap;letter-spacing:-.6px}
 .count{flex:none;font:800 11px/1.2 ui-monospace,Menlo,Consolas,monospace;color:var(--accent);border:1px solid var(--edge);border-radius:5px;padding:3px 6px;white-space:nowrap}
-.center{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:3px;min-width:0;min-height:0}
+.center{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:3px;min-width:0;min-height:0;overflow:hidden}
 .portrait{position:relative;width:min(100%,248px);height:auto;max-width:248px;aspect-ratio:1;justify-self:center;align-self:center;overflow:hidden;border:1px solid var(--edge);border-radius:10px;background:radial-gradient(circle at 50% 35%,#f8faf8,#b4bdb7);box-shadow:0 3px 12px rgba(0,0,0,.18)}
 .fallback{position:absolute;inset:0;display:grid;place-items:center;font:bold 70px/1 Georgia,serif;color:#828c84}
 .portrait img,.portrait video{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .portrait img{opacity:1}.portrait img.failed{opacity:0}
 .portrait video{opacity:0;pointer-events:none}.portrait video.active{opacity:1}
-.readout{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;min-width:0;text-align:center}
+.readout{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;min-width:0;text-align:center;min-height:94px;max-height:94px;overflow:hidden}
 .lead{display:none}.emoji{font-size:14px}
 .stage{font-size:clamp(27px,7.5vw,34px);line-height:1.1;letter-spacing:-1px;font-weight:950;white-space:nowrap}
 .one-liner{font-size:clamp(14px,3.3vw,16px);line-height:1.22;letter-spacing:-.35px;font-weight:650;white-space:pre-line;overflow-wrap:anywhere;max-width:100%}
@@ -41,10 +41,10 @@ body{display:flex;align-items:flex-start;justify-content:center;background:trans
 .range::-moz-range-thumb{width:26px;height:26px;background:var(--paper);border:3px solid var(--accent);border-radius:50%}
 .range:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 @media(max-height:300px){
-.widget{grid-template-rows:20px auto 43px;gap:2px;padding:6px 8px}
+.widget{height:100%;grid-template-rows:20px minmax(0,1fr) 43px;gap:2px;padding:6px 8px}
 .title{font-size:12px}.count{font-size:9px;padding:2px 5px}
 .center{gap:3px}.portrait{width:min(100%,180px);max-width:180px;max-height:none}
-.readout{gap:1px}.stage{font-size:21px}.one-liner{font-size:9px;line-height:1.2}
+.readout{gap:1px;min-height:62px;max-height:62px}.stage{font-size:21px}.one-liner{font-size:9px;line-height:1.2}
 .controls{padding-top:3px;grid-template-rows:12px minmax(0,1fr)}.ends{font-size:9px}
 .range{height:24px}.range::-webkit-slider-runnable-track{height:8px}.range::-webkit-slider-thumb{width:22px;height:22px;margin-top:-8px}
 }
